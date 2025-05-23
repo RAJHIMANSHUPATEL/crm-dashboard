@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { LogOut, Moon, Settings, Sun, UserIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -13,13 +13,15 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
-import { SidebarTrigger } from "./ui/sidebar";
+import { SidebarTrigger, useSidebar } from "./ui/sidebar";
 
 const Navbar = () => {
+const {toggleSidebar} = useSidebar()
   const { theme, setTheme } = useTheme();
   return (
     <div className="flex p-4 items-center justify-between">
       <SidebarTrigger />
+      {/* <Button variant="outline" onClick={toggleSidebar}>Custom Button</Button> */}
       <div className="flex items-center gap-4">
         <Link href="/">Dashboard</Link>
 
