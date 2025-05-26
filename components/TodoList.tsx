@@ -1,12 +1,38 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Card } from "./ui/card";
 import { Checkbox } from "./ui/checkbox";
 import { ScrollArea } from "./ui/scroll-area";
+import { Calendar } from "./ui/calendar";
+import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
+import { CalendarIcon } from "lucide-react";
+import { Button } from "./ui/button";
+import { format } from "date-fns";
 
 function TodoList() {
+    const [date, setDate] = useState<Date | undefined>(new Date());
+    const [open, setOpen] = useState(false);
     return (
         <div className="">
-            Calender
+            <h1 className=" font-medium mb-4">Todo List</h1>
+            <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                    <Button className="w-full">
+                        <CalendarIcon />
+                        {date ? format(date, "PPP") : <span>Pick a Date</span>}
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent className="p-0 w-auto">
+                    <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={(date) => {
+                            setDate(date);
+                            setOpen(false);
+                        }}
+                    />
+                </PopoverContent>
+            </Popover>
             {/* List */}
             <ScrollArea className="max-h-[400px] mt-4 overflow-y-auto">
                 {/* List Item */}
