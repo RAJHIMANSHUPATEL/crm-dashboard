@@ -261,6 +261,7 @@ const getData = async (): Promise<Payment[]> => {
 
 const PatmentPage = async () => {
     const data = await getData()
+
     return (
         <div>
             <div className="mb-8 px-4 py-2 bg-secondary rounded-md">
